@@ -1,5 +1,6 @@
 package com.lawsofnatrue.common.ice
 
+
 import javax.inject.{Inject, Named}
 
 import org.slf4j.LoggerFactory
@@ -12,20 +13,26 @@ trait IceServerTemplate {
 }
 
 class IceServerTemplateImpl @Inject()(@Named("ice.server.init.config") iceInitializeConfig: String,
-                            @Named("ice.server.adapter.name")adapterName: String,
-                            @Named("ice.server.adapter.config") adapterConfig: String,
-                            @Named("ice.server.proxy.name") proxyName: String,
+                                      @Named("ice.server.init.size") iceInitSizeConfig: String,
+                                      @Named("ice.server.init.size-max") iceInitSizeMaxConfig: String,
+                                      @Named("ice.server.init.size-warn") iceInitSizeWarnConfig: String,
+                                      @Named("ice.server.adapter.name") adapterName: String,
+                                      @Named("ice.server.adapter.config") adapterConfig: String,
+                                      @Named("ice.server.proxy.name") proxyName: String,
                                       iceObj: Ice.ObjectImpl) extends IceServerTemplate {
   val logger = LoggerFactory.getLogger(this.getClass)
 
   override def startServer = {
     println(iceInitializeConfig)
+    println(iceInitSizeConfig)
+    println(iceInitSizeMaxConfig)
+    println(iceInitSizeWarnConfig)
     println(adapterName)
     println(adapterConfig)
     println(proxyName)
-    val ic: Ice.Communicator = Ice.Util.initialize(Array[String] {
-      iceInitializeConfig
-    })
+    val ic: Ice.Communicator = Ice.Util.initialize(Array[String](
+      iceInitializeConfig, iceInitSizeConfig, iceInitSizeMaxConfig, iceInitSizeWarnConfig
+    ))
     val adapter: Ice.ObjectAdapter = ic.createObjectAdapterWithEndpoints(adapterName, adapterConfig)
     adapter.add(iceObj, Ice.Util.stringToIdentity(proxyName))
     adapter.activate()
