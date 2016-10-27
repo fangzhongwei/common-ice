@@ -23,13 +23,6 @@ class IceServerTemplateImpl @Inject()(@Named("ice.server.init.config") iceInitia
   val logger = LoggerFactory.getLogger(this.getClass)
 
   override def startServer = {
-    println(iceInitializeConfig)
-    println(iceInitSizeConfig)
-    println(iceInitSizeMaxConfig)
-    println(iceInitSizeWarnConfig)
-    println(adapterName)
-    println(adapterConfig)
-    println(proxyName)
     val ic: Ice.Communicator = Ice.Util.initialize(Array[String](
       iceInitializeConfig, iceInitSizeConfig, iceInitSizeMaxConfig, iceInitSizeWarnConfig
     ))
