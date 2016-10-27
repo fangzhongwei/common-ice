@@ -16,7 +16,7 @@ object ConfigHelper {
     val map: util.HashMap[String, String] = new java.util.HashMap[String, String]()
     for (entry <- config.entrySet()) {
       val value: String = entry.getValue.render()
-      if (value.length > 2) map.put(entry.getKey, value.substring(1, value.length - 1))
+      if (value.length >= 2) map.put(entry.getKey, value.substring(1, value.length - 1))
     }
     map
   }
