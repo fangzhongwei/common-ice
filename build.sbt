@@ -1,9 +1,6 @@
 organization := "com.lawsofnature.common"
-
 name := "common-ice"
-
 version := "1.0"
-
 scalaVersion := "2.11.8"
 
 libraryDependencies += "com.zeroc" % "ice" % "3.6.2"

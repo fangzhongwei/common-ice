@@ -2,7 +2,6 @@
 ### SBT template
 # Simple Build Tool
 # http://www.scala-sbt.org/release/docs/Getting-Started/Directories.html#configuring-version-control
-
 target/
 target/*
 lib_managed/
@@ -12,3 +11,6 @@ project/boot/
 .cache
 *.ipr
 *.iws
+.idea
+.idea/*
+*.iml
