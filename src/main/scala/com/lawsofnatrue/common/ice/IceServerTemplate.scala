@@ -29,7 +29,7 @@ class IceServerTemplateImpl @Inject()(@Named("ice.server.init.config") iceInitia
     val adapter: Ice.ObjectAdapter = ic.createObjectAdapterWithEndpoints(adapterName, adapterConfig)
     adapter.add(iceObj, Ice.Util.stringToIdentity(proxyName))
     adapter.activate()
-    logger.info("template adapter active , waiting for request...")
+    logger.info(proxyName + " template adapter active , waiting for request...")
     //这个方法挂起发出调用的线程，直到服务器实现终止为止。或我们自己发出一个调用关闭。
     ic.waitForShutdown()
     System.exit(0)
